@@ -35,7 +35,7 @@ A Python-based framework for simulating Active Directory attack techniques in au
 
 ### Setup
 bash - 
-git clone https://github.com/yourusername/ADASF.git
+git clone https://github.com/Jatin1234-kumar/ADASF.git
 cd ADASF
 pip install -r requirements.txt
 
