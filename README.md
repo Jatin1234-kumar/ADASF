@@ -38,3 +38,18 @@ bash -
 git clone https://github.com/yourusername/ADASF.git
 cd ADASF
 pip install -r requirements.txt
+
+Common Options
+Option	Description
+-d, --domain	Target domain (e.g., corp.local)
+-u, --username	Authentication username
+-p, --password	Password (will prompt if not provided)
+-H, --hashes	NTLM hashes (LM:NT) for pass-the-hash
+--dc-ip	Domain controller IP address
+--recon	Run reconnaissance only
+--privesc	Run privilege escalation checks
+--lateral TARGET	Simulate lateral movement to target host
+--exfil	Simulate data exfiltration
+--full	Run all attack phases
+--no-safe-mode	Disable safe simulation mode (CAUTION)
+
