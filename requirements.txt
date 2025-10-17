@@ -1,0 +1,5 @@
+impacket>=0.9.27
+ldap3>=2.9
+cryptography>=3.4
+dnspython>=2.0.0
+requests>=2.25
