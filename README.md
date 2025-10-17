@@ -1,55 +1,39 @@
-# Active Directory Attack Simulation Framework (ADASF)
+# ADASF — Active Directory Attack Simulation Framework
 
-A Python-based framework for simulating Active Directory attack techniques in authorized security testing environments.
+**ADASF** is a Python-based framework that *safely simulates* Active Directory attack techniques for authorized security testing, red-team training, and blue-team detection validation. It focuses on realistic, non-destructive simulations and rich logging so teams can test detection and response without performing harmful actions by default.
 
-## Features
+---
 
-- **Comprehensive Reconnaissance**:
-  - Domain user/group/computer enumeration
-  - OU structure mapping
-  - GPO and trust relationship discovery
+## Key features
+- **Comprehensive reconnaissance (implemented / simulated)**
+  - Domain user & group enumeration — *implemented*  
+  - Domain computer / OU / GPO / trust enumeration — *safe stubs (planned)*
+- **Privilege escalation checks**
+  - Kerberoastable detection — *implemented (SPN enumeration; simulation only)*  
+  - AS-REP roast detection, unconstrained delegation, ACL/GPO checks — *safe stubs*
+- **Lateral movement (simulated only)**
+  - WMI, WinRM, SMB file operations, scheduled tasks — *safe simulation*
+- **Safe testing environment**
+  - Default **safe mode = ON** (non-destructive)  
+  - `--no-safe-mode` exists but non-safe actions must be implemented in lab only
+- **Logging & Reporting**
+  - Logs to `adasf.log` + console  
+  - Generates timestamped JSON (default) or HTML reports
 
-- **Privilege Escalation Checks**:
-  - Kerberoasting detection
-  - AS-REP roasting detection
-  - Unconstrained delegation identification
-  - ACL vulnerability assessment
+---
 
-- **Lateral Movement Simulations**:
-  - WMI execution
-  - WinRM execution
-  - SMB file operations
-  - Scheduled task creation
+## Safety & Ethics
+- **Run only on lab/test environments with explicit authorization.**  
+- Default `safe_mode=True` ensures non-destructive actions.  
+- Pass-the-hash (NTLM) behavior differs between SMB and LDAP; LDAP with hashes is skipped.  
+- Report files: `adasf_report_YYYYMMDD_HHMMSS.json` / `.html`.
 
-- **Safe Testing Environment**:
-  - Non-destructive safe mode (default)
-  - Simulated attack patterns
-  - Comprehensive logging
+---
 
 ## Installation
-
-### Prerequisites
-- Python 3.8+
-- Active Directory test environment
-- Domain credentials (for authentication)
-
-### Setup
-bash - 
-git clone https://github.com/Jatin1234-kumar/ADASF.git
+```bash
+git clone https://github.com/yourorg/ADASF.git
 cd ADASF
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
-
-Common Options
-Option	Description
--d, --domain	Target domain (e.g., corp.local)
--u, --username	Authentication username
--p, --password	Password (will prompt if not provided)
--H, --hashes	NTLM hashes (LM:NT) for pass-the-hash
---dc-ip	Domain controller IP address
---recon	Run reconnaissance only
---privesc	Run privilege escalation checks
---lateral TARGET	Simulate lateral movement to target host
---exfil	Simulate data exfiltration
---full	Run all attack phases
---no-safe-mode	Disable safe simulation mode (CAUTION)
-
